@@ -3,7 +3,6 @@ package com.example.excel_operations.Controller;
 import com.example.excel_operations.Entity.Employees;
 import com.example.excel_operations.Service.EmployeesService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +18,13 @@ public class EmployeesController {
         this.employeesService = employeesService;
     }
 
-    @GetMapping("/showAll")
+    @GetMapping("/showAllDB")
     public ResponseEntity<List<Employees>> getAllEmployees(){
-        return new ResponseEntity<>(employeesService.getAllEmployees(), HttpStatus.OK);
+        return new ResponseEntity<List<Employees>>(employeesService.getAllEmployees(), HttpStatus.OK);
     }
+    @GetMapping("/showAllFromExcel")
+    public ResponseEntity<List<Employees>> getAllEmployeesFromExcel(){
+        return new ResponseEntity<List<Employees>>(employeesService.getAllEmployeesFromExcel(), HttpStatus.OK);
+    }
+
 }

@@ -3,89 +3,75 @@ package com.example.excel_operations.Entity;
 import com.poiji.annotation.ExcelCell;
 import com.poiji.annotation.ExcelCellName;
 import com.poiji.annotation.ExcelRow;
+import jakarta.persistence.*;
+
 
 import java.math.BigDecimal;
 import java.util.List;
 
+@Entity
+@Table(name = "employees")
 public class Employees {
 
     @ExcelRow
     private int rowIndex;
     @ExcelCell(0)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long employeeId;
 
     @ExcelCell(1)
+    @Column
     private String name;
 
     @ExcelCell(2)
+    @Column
     private String surname;
 
     @ExcelCell(3)
+    @Column
     private int age;
 
     @ExcelCell(4)
+    @Column
     private boolean single;
 
     @ExcelCellName("EMAILS")
+    @Column
     private List<String> emails;
 
     @ExcelCell(5)
-    List<BigDecimal> bills;
+    @Column
+    private List<BigDecimal> bills;
 
 
     public long getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(long employeeId) {
-        this.employeeId = employeeId;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getSurname() {
         return surname;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
     public int getAge() {
         return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     public boolean isSingle() {
         return single;
     }
 
-    public void setSingle(boolean single) {
-        this.single = single;
-    }
-
     public List<String> getEmails() {
         return emails;
-    }
-
-    public void setEmails(List<String> emails) {
-        this.emails = emails;
     }
 
     public List<BigDecimal> getBills() {
         return bills;
     }
 
-    public void setBills(List<BigDecimal> bills) {
-        this.bills = bills;
-    }
 }
