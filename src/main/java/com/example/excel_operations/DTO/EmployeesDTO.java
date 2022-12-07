@@ -40,8 +40,8 @@ public class EmployeesDTO {
         return name;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public String getSurname() {
+        return surname;
     }
     public int getAge() {
         return age;
