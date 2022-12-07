@@ -30,7 +30,7 @@ public class EmployeesDTO {
     private List<String> emails;
 
     @ExcelCell(5)
-    private List<BigInteger> bills;
+    private List<BigDecimal> bills;
 
     public long getEmployeeId() {
         return employeeId;
@@ -52,7 +52,7 @@ public class EmployeesDTO {
     public List<String> getEmails() {
         return emails;
     }
-    public List<BigInteger> getBills() {
+    public List<BigDecimal> getBills() {
         return bills;
     }
 }

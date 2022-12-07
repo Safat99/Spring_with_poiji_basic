@@ -2,6 +2,8 @@ package com.example.excel_operations.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,12 +41,12 @@ public class Employees {
 
     @ElementCollection
     @CollectionTable(name="bills", joinColumns = @JoinColumn(name = "employee_id"))
-    private List<BigInteger> bills;
+    private List<BigDecimal> bills;
 
     public Employees() {
     }
 
-    public Employees(long employeeId, String name, String surname, int age, boolean single, List<String> emails, List<BigInteger> bills) {
+    public Employees(long employeeId, String name, String surname, int age, boolean single, List<String> emails, List<BigDecimal> bills) {
         this.employeeId = employeeId;
         this.name = name;
         this.surname = surname;
@@ -78,7 +80,7 @@ public class Employees {
         this.emails = emails;
     }
 
-    public void setBills(List<BigInteger> bills) {
+    public void setBills(List<BigDecimal> bills) {
         this.bills = bills;
     }
 
@@ -106,7 +108,7 @@ public class Employees {
         return emails;
     }
 
-    public List<BigInteger> getBills() {
+    public List<BigDecimal> getBills() {
         return bills;
     } // maybe poiji ignores comma inside excel
 
