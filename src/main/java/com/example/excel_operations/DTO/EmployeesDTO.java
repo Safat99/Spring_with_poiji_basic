@@ -36,56 +36,23 @@ public class EmployeesDTO {
         return employeeId;
     }
 
-    public void setEmployeeId(long employeeId) {
-        this.employeeId = employeeId;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
     }
 
     public void setSurname(String surname) {
         this.surname = surname;
     }
-
     public int getAge() {
         return age;
     }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public boolean isSingle() {
         return single;
     }
-
-    public void setSingle(boolean single) {
-        this.single = single;
-    }
-
     public List<String> getEmails() {
         return emails;
     }
-
-    public void setEmails(List<String> emails) {
-        this.emails = emails;
-    }
-
     public List<BigInteger> getBills() {
         return bills;
     }
-
-    public void setBills(List<BigInteger> bills) {
-        this.bills = bills;
-    }
-
 }
