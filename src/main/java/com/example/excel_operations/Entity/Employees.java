@@ -1,50 +1,86 @@
 package com.example.excel_operations.Entity;
 
-import com.poiji.annotation.ExcelCell;
-import com.poiji.annotation.ExcelCellName;
-import com.poiji.annotation.ExcelRow;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
-
-import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "employees")
 public class Employees {
 
-    @ExcelRow
+    @JsonIgnore
+    @Transient
     private int rowIndex;
-    @ExcelCell(0)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long employeeId;
 
-    @ExcelCell(1)
     @Column
     private String name;
 
-    @ExcelCell(2)
     @Column
     private String surname;
 
-    @ExcelCell(3)
     @Column
     private int age;
 
-    @ExcelCell(4)
     @Column
     private boolean single;
 
-    @ExcelCellName("EMAILS")
-    @Column
-    private List<String> emails;
+//    @Column(columnDefinition = "VARCHAR(255)") // array rakhar jonne datatype e columnDefinition use korte hobe
 
-    @ExcelCell(5)
-    @Column
-    private List<BigDecimal> bills;
+    @ElementCollection
+    @CollectionTable(name = "emails" , joinColumns = @JoinColumn(name="employee_id"))
+    private List<String> emails = new ArrayList<>();
 
+
+    @ElementCollection
+    @CollectionTable(name="bills", joinColumns = @JoinColumn(name = "employee_id"))
+    private List<BigInteger> bills;
+
+    public Employees() {
+    }
+
+    public Employees(long employeeId, String name, String surname, int age, boolean single, List<String> emails, List<BigInteger> bills) {
+        this.employeeId = employeeId;
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.single = single;
+        this.emails = emails;
+        this.bills = bills;
+    }
+
+    public void setEmployeeId(long employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setSingle(boolean single) {
+        this.single = single;
+    }
+
+    public void setEmails(List<String> emails) {
+        this.emails = emails;
+    }
+
+    public void setBills(List<BigInteger> bills) {
+        this.bills = bills;
+    }
 
     public long getEmployeeId() {
         return employeeId;
@@ -70,8 +106,8 @@ public class Employees {
         return emails;
     }
 
-    public List<BigDecimal> getBills() {
+    public List<BigInteger> getBills() {
         return bills;
-    }
+    } // maybe poiji ignores comma inside excel
 
 }
