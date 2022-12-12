@@ -43,6 +43,8 @@ public class EmployeesService {
         List<String> emails = new ArrayList<>();
 
         for (int i=0; i<allEmployeesDTO.size();i++){
+            bills.clear();
+            emails.clear();
             EmployeesDTO _employeeDto = allEmployeesDTO.get(i);
             List<BigDecimal> _bills = _employeeDto.getBills();
             List<String> _emails = _employeeDto.getEmails();
